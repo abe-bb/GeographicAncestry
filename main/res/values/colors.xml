@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colroLifeStoryLines">#ff3271a8</color>
+    <color name="colorSpouseLines">#ffa83432</color>
+    <color name="colorFamilyTreeLines">#ff32a87f</color>
+</resources>

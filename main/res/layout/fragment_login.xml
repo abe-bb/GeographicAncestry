@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+    <GridLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:columnCount="4"
+        android:padding="16dp"
+        tools:context=".layout.MainActivity">
+
+<!--        Row -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/server_host_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/server_host_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/server_host_field"
+            android:inputType="textPersonName"
+            android:layout_gravity="fill_horizontal"
+            tools:text="testserver.example.com"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/server_port_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/server_port_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/server_port_field"
+            android:inputType="number"
+            android:layout_gravity="fill_horizontal"
+            tools:text="8008"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/username_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/username_field"
+            android:inputType="text"
+            android:layout_gravity="fill_horizontal"
+            tools:text="adjunctMortal"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/password_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/password_field"
+            android:inputType="textPassword"
+            android:layout_gravity="fill_horizontal"
+            tools:text="totally secure password"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/first_name_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/first_name_field"
+            android:inputType="textPersonName"
+            android:layout_gravity="fill_horizontal"
+            tools:text="Abram"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/last_name_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/last_name_field"
+            android:inputType="textPersonName"
+            android:layout_gravity="fill_horizontal"
+            tools:text="Clements"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_field"
+            android:layout_gravity="end"/>
+
+        <EditText
+            android:hint="@string/email_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:id="@+id/email_field"
+            android:inputType="textEmailAddress"
+            android:layout_gravity="fill_horizontal"
+            tools:text="example@exmaple.com"
+            />
+
+<!--        Row-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender_field"
+            android:layout_gravity="end|center_vertical"
+            />
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_gravity="start"
+            android:layout_columnSpan="3"
+            android:checkedButton="@id/button_female" >
+
+            <RadioButton
+                android:id="@+id/button_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_female" />
+
+            <RadioButton
+                android:id="@+id/button_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_male"/>
+
+        </RadioGroup>
+
+<!--        Row-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="4"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="12dp">
+
+            <Button
+                android:id="@+id/button_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_register"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_login"
+                android:enabled="false"/>
+
+        </LinearLayout>
+    </GridLayout>
+</ScrollView>

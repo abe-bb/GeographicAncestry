@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="line_types"
+        app:title="@string/line_type_title"
+        app:summary="@string/line_type_summary" >
+
+        <SwitchPreferenceCompat
+            app:key="life_story_switch"
+            app:title="@string/life_story_line_title"
+            app:summary="@string/life_story_line_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="family_tree_switch"
+            app:title="@string/family_tree_line_title"
+            app:summary="@string/family_tree_line_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="spouse_switch"
+            app:title="@string/spouse_line_title"
+            app:summary="@string/spouse_line_summary"
+            app:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="event_filters"
+        app:title="@string/event_filter_title"
+        app:summary="@string/event_filter_summary" >
+
+        <SwitchPreferenceCompat
+            app:key="father_side_switch"
+            app:title="@string/father_filter_title"
+            app:summary="@string/father_filter_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="mother_side_switch"
+            app:title="@string/mother_filter_title"
+            app:summary="@string/mother_filter_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="male_switch"
+            app:title="@string/male_filter_title"
+            app:summary="@string/gender_filter_summary"
+            app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="female_switch"
+            app:title="@string/female_filter_title"
+            app:summary="@string/gender_filter_summary"
+            app:defaultValue="true" />
+
+        <Preference
+            app:key="logout"
+            app:title="@string/logout_title"
+            app:summary="@string/logout_summary" />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

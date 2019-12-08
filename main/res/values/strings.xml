@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Family Map Client</string>
+
+    <string name="server_host_field">Server Host</string>
+    <string name="server_port_field">Server Port</string>
+    <string name="username_field">Username</string>
+    <string name="password_field">Password</string>
+    <string name="first_name_field">First Name</string>
+    <string name="last_name_field">Last Name</string>
+    <string name="email_field">Email</string>
+    <string name="gender_field">Gender</string>
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
+    <string name="button_male">Male</string>
+    <string name="button_female">Female</string>
+
+    <string name="server_host_hint">familymap.example.com</string>
+    <string name="server_port_hint">8080</string>
+    <string name="username_hint">username</string>
+    <string name="password_hint">password</string>
+    <string name="first_name_hint">Jane</string>
+    <string name="last_name_hint">Doe</string>
+    <string name="email_hint">jane.doe@example.com</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="marker_info_title">Click on a marker to see event details</string>
+    <string name="marker_error_missing_info">Person or Event associated with this marker does not exist.</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="search_icon">Search</string>
+    <string name="settings_icon">Settings</string>
+
+    <string name="line_type_title">Line Types</string>
+    <string name="line_type_summary">Select types of lines to draw on the map</string>
+    <string name="life_story_line_title">Life Story Lines</string>
+    <string name="life_story_line_summary">Show life story lines</string>
+    <string name="family_tree_line_title">Family Tree Lines</string>
+    <string name="family_tree_line_summary">Show family tree lines</string>
+    <string name="spouse_line_title">Spouse Lines</string>
+    <string name="spouse_line_summary">Show spouse lines</string>
+
+    <string name="event_filter_title">Event Filters</string>
+    <string name="event_filter_summary">Show or hide events based on filters</string>
+    <string name="father_filter_title">Father\'s Side</string>
+    <string name="father_filter_summary">Filter by fathers side of family</string>
+    <string name="mother_filter_title">Mother\'s Side</string>
+    <string name="mother_filter_summary">Filter by mothers side of family</string>
+    <string name="male_filter_title">Male Events</string>
+    <string name="female_filter_title">Female Events</string>
+    <string name="gender_filter_summary">Filter events based on gender</string>
+    <string name="logout_title">Logout</string>
+    <string name="logout_summary">Return to the login screen</string>
+</resources>

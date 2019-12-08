@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/marker_info" />
+
+    <TextView
+        android:id="@+id/marker_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:lines="3"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/marker_info_title"
+        android:textAlignment="center"
+        android:drawableLeft="@drawable/person_grey_48dp"
+        android:drawableStart="@drawable/person_grey_48dp"/>
+</RelativeLayout>
