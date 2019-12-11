@@ -50,4 +50,11 @@
     <string name="gender_filter_summary">Filter events based on gender</string>
     <string name="logout_title">Logout</string>
     <string name="logout_summary">Return to the login screen</string>
+    
+    <string name="life_events_list_group">Life Events</string>
+    <string name="family_list_group">Family</string>
+
+    <string name="male_gender">Male</string>
+    <string name="female_gender">Female</string>
+    <string name="unknown_gender">Unknown</string>
 </resources>

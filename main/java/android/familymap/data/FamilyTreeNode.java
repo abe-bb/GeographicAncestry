@@ -1,5 +1,7 @@
 package android.familymap.data;
 
+import java.util.LinkedList;
+
 import model.PersonModel;
 
 class FamilyTreeNode {
@@ -32,4 +34,6 @@ class FamilyTreeNode {
     public void setRightNode(FamilyTreeNode rightNode) {
         this.rightNode = rightNode;
     }
+
+
 }

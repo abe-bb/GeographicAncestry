@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements AuthTaskListener 
         FragmentTransaction transaction = fm.beginTransaction();
 
         MapFragment mapFragment = new MapFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("hasOptionMenu", true);
+        mapFragment.setArguments(bundle);
         transaction.replace(R.id.main_fragment_container, mapFragment);
         transaction.commit();
     }

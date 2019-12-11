@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import model.EventModel;
 import model.PersonModel;
@@ -42,9 +43,7 @@ import model.PersonModel;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap map;
-    private HashMap<String, Float> colorMap = new HashMap<>();
     private ArrayList<Polyline> lines = new ArrayList<>();
-    private float lastAddedColor = 0;
 
     private EventModel selectedEvent;
 
@@ -59,7 +58,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        TextView markerInfo = view.findViewById(R.id.marker_info);
+        markerInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PersonActivity.class);
+                intent.putExtra("personID", selectedEvent.getPersonID());
+                startActivity(intent);
+            }
+        });
 
+//        Bundle bundle = getArguments();
+//
+//        Boolean hasOptionsMenu = bundle.getBoolean("hasOptionsMenu");
         setHasOptionsMenu(true);
         return view;
     }
@@ -161,27 +172,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    private Float getColor(@NonNull String eventType) {
-        if (colorMap.containsKey(eventType)) {
-            return colorMap.get(eventType);
-        }
-        else {
-            lastAddedColor = lastAddedColor + 61 % 360;
-            colorMap.put(eventType, lastAddedColor);
-            return lastAddedColor;
-        }
-    }
-
     private void drawMapMarkers() {
         DataCache cache = DataCache.getInstance();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
 
-        for (ArrayList<EventModel> personEvents : cache.getEvents(preferences)) {
+        for (LinkedList<EventModel> personEvents : cache.getEvents(preferences)) {
             for (EventModel event : personEvents) {
                 Marker marker = map.addMarker(new MarkerOptions()
-                        .icon(BitmapDescriptorFactory.defaultMarker(getColor(event.getEventType())))
+                        .icon(BitmapDescriptorFactory.defaultMarker(cache.getColor(event.getEventType())))
                         .position(new LatLng(event.getLatitude(), event.getLongitude())));
 
                 marker.setTag(event);

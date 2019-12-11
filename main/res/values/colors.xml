@@ -6,4 +6,5 @@
     <color name="colroLifeStoryLines">#ff3271a8</color>
     <color name="colorSpouseLines">#ffa83432</color>
     <color name="colorFamilyTreeLines">#ff32a87f</color>
+    <color name="colorDivider">#888888</color>
 </resources>
