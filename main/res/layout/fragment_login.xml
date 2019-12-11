@@ -11,7 +11,8 @@
         android:orientation="horizontal"
         android:columnCount="4"
         android:padding="16dp"
-        tools:context=".layout.MainActivity">
+        tools:context=".layout.MainActivity"
+        android:layout_gravity="center_horizontal">
 
 <!--        Row -->
         <TextView

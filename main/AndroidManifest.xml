@@ -18,8 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".layout.PersonActivity"
+        <activity
+            android:name=".layout.EventActivity"
             android:parentActivityName=".layout.MainActivity"></activity>
+        <activity
+            android:name=".layout.PersonActivity"
+            android:parentActivityName=".layout.MainActivity" />
         <activity
             android:name=".layout.SettingsActivity"
             android:parentActivityName=".layout.MainActivity" />

@@ -197,6 +197,10 @@ public class FamilyTree {
 
         FamilyTreeNode subtree = getSubtreeRecursive(root, personID);
 
+        if (subtree == null) {
+            return lines;
+        }
+
         buildFamilyTreeLinesRecursive(subtree.getRightNode(), selectedEvent, events, baseLineWidth, 0, lines);
         buildFamilyTreeLinesRecursive(subtree.getLeftNode(), selectedEvent, events, baseLineWidth, 0, lines);
 
@@ -204,7 +208,24 @@ public class FamilyTree {
     }
 
     public LinkedList<FamilyMember> buildDirectFamilyList(String personID) {
-        return buildDirectFamilyListRecursive(personID, root, null, null);
+        LinkedList<FamilyMember> familyMembers = buildDirectFamilyListRecursive(personID, root, null, null);
+
+        if (familyMembers == null) {
+            familyMembers = new LinkedList<>();
+        }
+
+//        Add rootPerson's spouse if needed;
+        if (root.getPerson().getPersonID().equals(personID) && spouse != null) {
+            FamilyMember familyMember = new FamilyMember("Spouse", spouse.getFirstName(), spouse.getLastName(), spouse.getGender(), spouse.getPersonID());
+            familyMembers.add(familyMember);
+        }
+//        Add root person as spouse's spouse if needed;
+        else if (spouse != null && spouse.getPersonID().equals(personID) && root.getPerson() != null) {
+            FamilyMember familyMember = new FamilyMember("Spouse", root.getPerson().getFirstName(), root.getPerson().getLastName(), root.getPerson().getGender(), root.getPerson().getPersonID());
+            familyMembers.add(familyMember);
+        }
+
+        return familyMembers;
     }
 
     private LinkedList<FamilyMember> buildDirectFamilyListRecursive(String personID, FamilyTreeNode node, PersonModel child, FamilyTreeNode spouse) {

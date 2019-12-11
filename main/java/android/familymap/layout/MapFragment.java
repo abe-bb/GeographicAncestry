@@ -58,6 +58,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Bundle bundle = getArguments();
+        Boolean hasOptionsMenu = true;
+        if (bundle != null) {
+            hasOptionsMenu = bundle.getBoolean("hasOptionsMenu", true);
+            String selectedEventID = bundle.getString("selectedEventID", null);
+            setSelectedEvent(selectedEventID);
+        };
+
+
         TextView markerInfo = view.findViewById(R.id.marker_info);
         markerInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,10 +77,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-//        Bundle bundle = getArguments();
-//
-//        Boolean hasOptionsMenu = bundle.getBoolean("hasOptionsMenu");
-        setHasOptionsMenu(true);
+
+        setHasOptionsMenu(hasOptionsMenu);
         return view;
     }
 
@@ -147,6 +154,33 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 return true;
             }
         });
+
+
+        DataCache cache = DataCache.getInstance();
+
+        if (selectedEvent != null) {
+
+            PersonModel person = cache.getPersonByID(selectedEvent.getPersonID());
+
+            map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(selectedEvent.getLatitude(), selectedEvent.getLongitude())));
+            drawMapLines(selectedEvent, person);
+
+            TextView infoWindow = getView().findViewById(R.id.marker_info);
+
+            infoWindow.setText(String.format("%s %s\n%s: %s, %s (%d)",
+                    person.getFirstName(), person.getLastName(), selectedEvent.getEventType().toUpperCase(),
+                    selectedEvent.getCity(), selectedEvent.getCountry(), selectedEvent.getYear()));
+
+            if (person.getGender().equals("f")) {
+                infoWindow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.person_pink_48dp, 0, 0, 0);
+            }
+            else if (person.getGender().equals("m")) {
+                infoWindow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.person_blue_48dp, 0, 0, 0);
+            }
+            else {
+                infoWindow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.person_grey_48dp, 0, 0, 0);
+            }
+        }
 
 
     }
@@ -254,6 +288,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             line.color(context.getResources().getColor(R.color.colorSpouseLines));
             this.lines.add(map.addPolyline(line));
         }
+    }
+
+    private void setSelectedEvent(String eventID) {
+        if (eventID == null) {
+            return;
+        }
+
+        DataCache cache = DataCache.getInstance();
+
+        selectedEvent = cache.getEventByID(eventID);
     }
 
 }

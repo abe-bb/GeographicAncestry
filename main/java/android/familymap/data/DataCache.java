@@ -71,6 +71,17 @@ public class DataCache {
         return mFamilyTree.getPersonByID(personID);
     }
 
+    public EventModel getEventByID(String eventID) {
+        for (LinkedList<EventModel> events : mFilteredEventsMap.values()) {
+            for (EventModel event : events) {
+                if (event.getEventID().equals(eventID)) {
+                    return event;
+                }
+            }
+        }
+        return null;
+    }
+
     private void buildEventsMap(EventModel[] events) {
         if (mEventsMap == null) {
             mEventsMap = new HashMap<>();

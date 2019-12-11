@@ -173,12 +173,21 @@ public class PersonActivity extends AppCompatActivity {
 
             switch (groupPosition) {
                 case LIFE_EVENTS_GROUP_POSITION:
-                    LifeEvent event = (LifeEvent) getChild(groupPosition, childPosition);
+                    final LifeEvent event = (LifeEvent) getChild(groupPosition, childPosition);
                     primary.setText(String.format("%s: %s, %s (%d)", event.getEventType().toUpperCase(), event.getCountry(), event.getCity(), event.getYear()));
                     secondary.setText(String.format("%s %s", event.getFirstName(), event.getLastName()));
 
                     icon.setImageResource(R.drawable.marker_48dp);
                     icon.setColorFilter(event.getArgbColor());
+
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), EventActivity.class);
+                            intent.putExtra("eventID", event.getEventID());
+                            startActivity(intent);
+                        }
+                    });
                     break;
 
                 case FAMILY_GROUP_POSITION:
