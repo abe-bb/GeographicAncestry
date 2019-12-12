@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import model.PersonModel;
 
-class FamilyTreeNode {
+public class FamilyTreeNode {
     private PersonModel person;
     private FamilyTreeNode leftNode;
     private FamilyTreeNode rightNode;

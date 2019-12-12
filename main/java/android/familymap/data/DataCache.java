@@ -26,7 +26,6 @@ public class DataCache {
     AuthTokenModel mAuthToken;
 
     FamilyTree mFamilyTree;
-
     PersonModel[] people;
 
     HashMap<String, LinkedList<EventModel>> mEventsMap;
@@ -56,6 +55,9 @@ public class DataCache {
 
         mFamilyTree = new FamilyTree(user);
         mFamilyTree.fillTree(persons);
+        if (mEventsMap != null) {
+            mEventsMap.clear();
+        }
         buildEventsMap(events);
     }
 
@@ -217,31 +219,11 @@ public class DataCache {
         }
 
         for (EventModel event : events) {
-            PersonModel person = getPersonByID(event.getPersonID());
-            float[] hsvColor = new float[3];
-            hsvColor[0] = getColor(event.getEventType());
-            hsvColor[1] = 1;
-            hsvColor[2] = 1;
-
-            LifeEvent lifeEvent = new LifeEvent();
-            lifeEvent.setEventID(event.getEventID());
-            lifeEvent.setCountry(event.getCountry());
-            lifeEvent.setCity(event.getCity());
-            lifeEvent.setEventType(event.getEventType());
-            lifeEvent.setFirstName(person.getFirstName());
-            lifeEvent.setYear(event.getYear());
-            lifeEvent.setLastName(person.getLastName());
-            lifeEvent.setArgbColor(Color.HSVToColor(hsvColor));
-
-
-
+            LifeEvent lifeEvent = buildLifeEvent(event);
             lifeEvents.add(lifeEvent);
 
         }
-
         return lifeEvents;
-
-
     }
 
 
@@ -265,6 +247,50 @@ public class DataCache {
         }
     }
 
+    public ArrayList<LifeEvent> searchEvents(String searchString) {
+//        TODO: implement this method
+        ArrayList<LifeEvent> events = new ArrayList<>();
+        String caseInsensitiveQuery = searchString.toLowerCase();
+
+        for (LinkedList<EventModel> eventModels : mFilteredEventsMap.values()) {
+            for (EventModel event : eventModels) {
+                if (event.getCountry().toLowerCase().contains(caseInsensitiveQuery) ||
+                        event.getCity().toLowerCase().contains(caseInsensitiveQuery) ||
+                        event.getEventType().toLowerCase().contains(caseInsensitiveQuery) ||
+                        event.getYear().toString().contains(caseInsensitiveQuery)) {
+                    events.add(buildLifeEvent(event));
+                }
+            }
+        }
+
+        return events;
+    }
+
+    public ArrayList<PersonModel> searchPersons(String searchString) {
+        ArrayList<PersonModel> persons = new ArrayList<>();
+        String caseInsensitiveQuery = searchString.toLowerCase();
+
+        for (PersonModel person : people) {
+            if (person.getFirstName().toLowerCase().contains(searchString) ||
+                    person.getLastName().toLowerCase().contains(caseInsensitiveQuery)) {
+                persons.add(person);
+            }
+        }
+        return persons;
+    }
+
+    public FamilyTree getFamilyTree() {
+        return mFamilyTree;
+    }
+
+    public HashMap<String, LinkedList<EventModel>> getFilteredEventsMap() {
+        return mFilteredEventsMap;
+    }
+
+    public HashMap<String, LinkedList<EventModel>> getEventsMap() {
+        return mEventsMap;
+    }
+
     private void ensureBirthFirst(List<EventModel> lifeEvents) {
         if (lifeEvents.isEmpty()) {
             return;
@@ -282,6 +308,19 @@ public class DataCache {
             }
 
         }
+    }
+
+    private LifeEvent buildLifeEvent(EventModel event) {
+        PersonModel person = getPersonByID(event.getPersonID());
+
+        float[] hsvColor = new float[3];
+        hsvColor[0] = getColor(event.getEventType());
+        hsvColor[1] = 1;
+        hsvColor[2] = 1;
+
+        return new LifeEvent(event.getEventID(), event.getEventType(), event.getCountry(),
+                event.getCity(), event.getYear(), person.getFirstName(), person.getLastName(),
+                Color.HSVToColor(hsvColor));
     }
 
 }

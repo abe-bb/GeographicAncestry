@@ -195,11 +195,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
             case R.id.search_icon:
-                Toast.makeText(getContext(), "You clicked the search button", Toast.LENGTH_SHORT).show();
+                Intent startSearchActivity = new Intent(getContext(), SearchActivity.class);
+                startActivity(startSearchActivity);
                 return true;
             case R.id.settings_icon:
-                Intent openSettings = new Intent(getContext(), SettingsActivity.class);
-                startActivity(openSettings);
+                Intent startSettingsActivity = new Intent(getContext(), SettingsActivity.class);
+                startActivity(startSettingsActivity);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

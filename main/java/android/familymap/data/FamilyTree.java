@@ -67,8 +67,10 @@ public class FamilyTree {
     }
 
     public PersonModel getPersonByID(String personID) {
-        if (spouse.getPersonID().equals(personID)) {
-            return spouse;
+        if (spouse != null) {
+            if (spouse.getPersonID().equals(personID)) {
+                return spouse;
+            }
         }
         return getPersonByIDRecursive(root, personID);
 
@@ -226,6 +228,14 @@ public class FamilyTree {
         }
 
         return familyMembers;
+    }
+
+    public FamilyTreeNode getRoot() {
+        return root;
+    }
+
+    public PersonModel getSpouse() {
+        return spouse;
     }
 
     private LinkedList<FamilyMember> buildDirectFamilyListRecursive(String personID, FamilyTreeNode node, PersonModel child, FamilyTreeNode spouse) {

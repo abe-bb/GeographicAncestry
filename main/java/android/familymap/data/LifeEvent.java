@@ -12,6 +12,19 @@ public class LifeEvent {
 
     private int argbColor;
 
+    LifeEvent() {}
+
+    public LifeEvent(String eventID, String eventType, String country, String city, int year, String firstName, String lastName, int argbColor) {
+        this.eventID = eventID;
+        this.eventType = eventType;
+        this.country = country;
+        this.city = city;
+        this.year = year;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.argbColor = argbColor;
+    }
+
     public String getEventID() {
         return eventID;
     }

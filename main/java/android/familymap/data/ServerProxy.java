@@ -132,17 +132,14 @@ public class ServerProxy {
         }
 //        Gson could not parse an AuthResult from  Server response (likely error result)
         catch (JsonSyntaxException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Register Error");
         }
 //        Failed to build a URL. Invalid User input
         catch (MalformedURLException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Register Error: invalid server host");
         }
 //        Could not communicate with Server
         catch (IOException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Register Error: Could not communicate with server");
         }
     }
@@ -176,28 +173,28 @@ public class ServerProxy {
         }
 //        Gson could not parse an AuthResult from  Server response (likely error result)
         catch (JsonSyntaxException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Error retrieving data");
         }
 //        Failed to build a URL. Invalid User input
         catch (MalformedURLException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Error retrieving data. Invalid URL.");
         }
 //        Could not communicate with Server
         catch (IOException e) {
-            Log.d(TAG, null, e);
             throw new ServerAccessError("Error retrieving data. Could not communicate with server.");
         }
 
     }
 
 
-    private PersonModel[] getUserPersons() throws ServerAccessError {
+    public PersonModel[] getUserPersons() throws ServerAccessError {
         try {
             DataCache cache = DataCache.getInstance();
             URL url = new URL("http", serverHost, serverPort, "/person");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            if (cache.getAuthToken() == null) {
+                throw new ServerAccessError("Error: no AuthToken set");
+            }
             connection.setRequestProperty("Authorization", cache.getAuthToken().getAuthToken());
             connection.setRequestMethod("GET");
 
@@ -233,12 +230,15 @@ public class ServerProxy {
 
     }
 
-    private EventModel[] getUserEvents() throws ServerAccessError {
+    public EventModel[] getUserEvents() throws ServerAccessError {
 //        TODO: implement this
         try {
             DataCache cache = DataCache.getInstance();
             URL url = new URL("http", serverHost, serverPort, "/event");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            if (cache.getAuthToken() == null) {
+                throw new ServerAccessError("Error: No AuthToken set");
+            }
             connection.setRequestProperty("Authorization", cache.getAuthToken().getAuthToken());
             connection.setRequestMethod("GET");
 
